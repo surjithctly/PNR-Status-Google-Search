@@ -1,0 +1,29 @@
+{
+   "content_scripts": [ {
+      "js": [ "jquery.min.js", "plugins.js", "pnr-status.js" ],
+      "css": ["pnr-styles.css"],
+      "matches": [ "*://*.google.com/*", "*://*.google.co.in/*", "http://api.erail.in/*" ]
+   } ],
+"browser_action": {
+        "name": "Check PNR Status"
+        },
+"background": {
+        "scripts": ["background.js"]
+    },
+"web_accessible_resources": [
+    "stations.json"
+  ],
+   "description": "Get PNR Status in Google Search",
+   "icons": {
+      "128": "128.png",
+      "16": "16.png",
+      "48": "48.png"
+   },
+   "manifest_version": 2,
+   "name": "PNR Status in Google Search",
+   "short_name": "PNR Status",
+   "options_page": "options.html",
+   "permissions": [ "webRequest" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "1.0.0"
+}
