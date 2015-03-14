@@ -94,7 +94,7 @@ $(document).on('click','#getPNRbutton', function() {
 
 function fetchPNRdetails() {
 
-	var api_key = 'e81a2917-70a4-4a98-a2be-ce5eb06aee40'; //50797
+	var api_key = 'API_KEY_HERE'; //50797
 	// API URL: https://api.railwayapi.com/pnr_status/pnr/'+pnr_no+'/apikey/'+ api_key
 	var pnr_no = $('#pnr_no').val();
 	var $result_block = $('#pnr_result');
