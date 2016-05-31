@@ -6,7 +6,7 @@ Now, get PNR Status information without leaving Google. No more clicks. Install 
 
 There are hundreds of websites to check PNR Status, I know. But all of them are hard to reach and lacks good user experience. So, I created this chrome extension to make your life easier. Get PNR Status in less than 3 clicks. Just open Google and type "PNR Status". Booom!! The PNR Search widget will show right there in Google search. 
 
-## Sote Last PNR Number
+## Store Last PNR Number
 Do you check un-confirmed waitlist PNR too often? We've got you covered, Our extension will store the last PNR you have given until the journey date, so you don't need to type that every time. Easy right? This is just a first version, More features coming soon, Including PNR Prediction, live train status, Coach layout and more. 
 
 ## Usage
