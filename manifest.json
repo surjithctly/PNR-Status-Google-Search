@@ -1,8 +1,8 @@
 {
    "content_scripts": [ {
-      "js": [ "jquery.min.js", "plugins.js", "pnr-status.js" ],
-      "css": ["pnr-styles.css"],
-      "matches": [ "*://*.google.com/*", "*://*.google.co.in/*", "http://api.erail.in/*" ]
+      "js": [ "js/jquery.min.js", "js/plugins.js", "pnr-status.js" ],
+      "css": ["css/pnr-styles.css"],
+      "matches": [ "*://*.google.com/*", "*://*.google.co.in/*", "*://*.railwayapi.com/*" ]
    } ],
 "browser_action": {
         "name": "Check PNR Status"
@@ -11,19 +11,22 @@
         "scripts": ["background.js"]
     },
 "web_accessible_resources": [
-    "stations.json"
+    "js/stations.json",
+    "images/*.png",
+    "images/*.gif",
+    "options.html"
   ],
    "description": "Get PNR Status in Google Search",
    "icons": {
-      "128": "128.png",
-      "16": "16.png",
-      "48": "48.png"
+      "128": "img/128.png",
+      "16": "img/16.png",
+      "48": "img/48.png"
    },
    "manifest_version": 2,
    "name": "PNR Status in Google Search",
    "short_name": "PNR Status",
    "options_page": "options.html",
-   "permissions": [ "webRequest" ],
+   "permissions": [ "webRequest", "storage", "cookies", "*://*.google.com/*", "*://*.google.co.in/*" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.0.0"
+   "version": "1.1.0"
 }

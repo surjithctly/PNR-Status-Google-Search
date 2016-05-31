@@ -1,3 +1,52 @@
+// Show the config file on installation
+chrome.runtime.onInstalled.addListener(function(object) {
+
+    if (localStorage.firsttime != 'false' || localStorage.firsttime == 'undefined' || !localStorage.firsttime) {
+        var optionsurl = chrome.extension.getURL("options.html");
+        chrome.tabs.create({
+            url: optionsurl
+        }, function(tab) {});
+
+        localStorage.firsttime = false;
+    }
+
+    var currentversion = chrome.app.getDetails().version;
+
+    if (!localStorage.version || localStorage.version != currentversion) {
+        chrome.browserAction.setBadgeText({
+            text: "NEW"
+        });
+        localStorage.version = currentversion
+
+    }
+});
+
+
+// Get Local Storage value in Content Script
+
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    switch (message.method) {
+        // ...
+        case "getLocalStorage":
+            if (message.key) { // Single key provided
+                sendResponse({
+                    data: localStorage[message.key]
+                });
+            } else if (message.keys) { // An array of keys requested
+                var data = {};
+                message.keys.forEach(function(key) {
+                    data[key] = localStorage[key];
+                })
+                sendResponse({
+                    data: data
+                });
+            }
+            break;
+            // ...
+    }
+});
+
+
 /**
  * Possible parameters for request:
  *  action: "xhttp" for a cross-origin HTTP request
