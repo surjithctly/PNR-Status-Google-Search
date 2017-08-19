@@ -18,14 +18,17 @@ chrome.runtime.sendMessage({
     },
     function(response) {
         apikey = response.data.apikey;
+ pushPNRCard(apikey);
     }
 );
 
+
 // Function to insert HTML if conditions are true
-function pushPNRCard() {
+function pushPNRCard(apikey) {
+
+console.log(apikey);
     // Run only if flag is false
     if (pushHTMLFlag == false) {
-
 
         if (Cookies.get('lastpnr')) {
             lastcookieValue = Cookies.get('lastpnr');
@@ -34,14 +37,14 @@ function pushPNRCard() {
         // html code block to inster
         var vcardHTMLBlock = '<div class="pnr_card_block">' +
             '<div class="pnr-card-section">' +
+            '<div class="more-info"><a href="http://surjithctly.in/labs/irctc/pnr-status/" target="_blank">More info</a></div>' +
             '<div class="check-pnr-title">Check PNR Status</div>' +
             '<div class="pnr_row"> <form id="getPNRStatus" action="" method="post">'+ 
             '<input type="number" value="' + lastcookieValue + '" class="pnr_input" pattern=".{10,}" title="Minimum 10 charactors needed" placeholder="Enter PNR Number" id="pnr_no" maxlength="10" minlength="10" required />' +
             '<div class="pnr-button-wrap" >   <button type="submit" class="pnr-primary-btn" id="getPNRbutton"> <span class="pnr-text">Get PNR Status</span> </button></div> </form> </div>' +
-            ' <div class="pnr-result-block" id="pnr_result"></div> </div>' +
-            '<div class="more-info"><a href="http://surjithctly.in/labs/irctc/pnr-status/" target="_blank">' +
-            'More info</a></div>' +
-            '</div>';
+            ' <div class="pnr-result-block" id="pnr_result"></div>' +
+            
+            ' </div></div>';
         // Prepend HTML Block in to search result
         if (apikey) {
         $("#center_col").prepend(vcardHTMLBlock);
@@ -55,40 +58,7 @@ function pushPNRCard() {
 
     }
 }
-//Function to find matching keywords
-function checkSearchKeyword() {
-    var valid_keyword_regex = "pnr|pnr status|train status";
-    var re = new RegExp(valid_keyword_regex, 'ig');
-    var searchKeyword = $('title').text();
-    if (searchKeyword.match(re)) {
-        //successful match
-        setTimeout(function() {
-            /*Run Push HTML Card */
-            pushPNRCard();
-            //console.log('dom inserted run');
-        }, 100);
-    } else {
-        //do nothing
-    }
-
-}
-
-// Run on page reload also
-$(document).ready(function() {
-    if ($('#search').length) {
-        checkSearchKeyword();
-    }
-});
-
-// Run on Dom Node Inserted
-$(document).on('DOMNodeInserted', function(e) {
-    if (pushHTMLFlag == false) {
-        //console.log(pushHTMLFlag);
-        if ($('#search').length) {
-            checkSearchKeyword();
-        }
-    }
-});
+  
 
 function autorunPNR() {
     if (Cookies.get('lastpnr')) {
@@ -129,6 +99,7 @@ function fetchPNRdetails() {
     }, function(responseText) {
         var resp = JSON.parse(responseText);
         var FromCity, ToCity, BoardingCity;
+        console.log(resp);
         if (resp.response_code == '200') {
 
 

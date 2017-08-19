@@ -78,7 +78,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
 });
 
 
-chrome.browserAction.onClicked.addListener(function (tab) { //Fired when User Clicks ICON
-     chrome.tabs.create({url: "https://www.google.co.in/#q=pnr+status"});
-});
+// chrome.browserAction.onClicked.addListener(function (tab) { //Fired when User Clicks ICON
+//      chrome.tabs.create({url: "https://www.google.co.in/#q=pnr+status"});
+// });
 

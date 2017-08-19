@@ -5,7 +5,9 @@
       "matches": [ "*://*.google.com/*", "*://*.google.co.in/*", "*://*.railwayapi.com/*" ]
    } ],
 "browser_action": {
-        "name": "Check PNR Status"
+        "name": "Check PNR Status",
+         "default_title": "Check PNR Status", 
+         "default_popup": "popup.html"
         },
 "background": {
         "scripts": ["background.js"]
@@ -28,5 +30,5 @@
    "options_page": "options.html",
    "permissions": [ "webRequest", "storage", "cookies", "*://*.google.com/*", "*://*.google.co.in/*" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.1.0"
+   "version": "1.2.0"
 }
